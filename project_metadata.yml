@@ -6,67 +6,61 @@
 # ============================================================
 
 project:
-  name: "[Project Title]"
-  slug: "[project-title-lowercase-hyphenated]"   # Used for folder names, URLs
+  name: "Automotive Sales Performance & Market Intelligence Dashboard"
+  slug: "automotive-sales-performance-intelligence"
   version: "1.0.0"
-  status: "completed"                             # Options: in-progress | completed | archived
-  last_updated: "YYYY-MM-DD"
+  status: "completed"
+  last_updated: "2026-05-04"
 
 author:
-  name: "[Your Full Name]"
-  role: "[Your Role or Title]"
-  github: "[github_username]"
-  linkedin: "[linkedin_profile_url]"
-  email: "[optional]"
+  name: "ANEG YANNICK"
+  role: "Data Analyst  Candidate"
+  github: "https://github.com/yannickaneg23"
+  linkedin: "https://www.linkedin.com/in/aneg-yannick-19692a432/l"
+  email: "yannickaneg23@gmail.com"
 
 project_type:
-  primary: "[e.g., exploratory-analysis]"        # See taxonomy below
+  primary: "dashboard"
   secondary:
-    - "[e.g., dashboard]"
-    - "[e.g., data-pipeline]"
+    - "data-pipeline"
+    - "data-cleaning"
+    - "visualization"
 
-# PROJECT TYPE TAXONOMY (pick what applies):
-# exploratory-analysis | sql-analysis | dashboard | data-pipeline
-# predictive-model | data-cleaning | reporting | visualization
-# end-to-end | automation | other
-
-domain: "[e.g., finance / healthcare / marketing / operations / education / other]"
+domain: "retail-sales / operations"
 
 tools:
   languages:
-    - "[e.g., Python 3.11]"
-    - "[e.g., SQL]"
+    - "Power Query Formula Language (M)"
   libraries:
-    - "[e.g., pandas 2.0]"
-    - "[e.g., matplotlib 3.7]"
+    - "None"
   platforms:
-    - "[e.g., GitHub]"
-    - "[e.g., Google Colab]"
+    - "GitHub"
   visualization:
-    - "[e.g., Power BI]"
-    - "[e.g., Tableau]"
-    - "[e.g., Plotly]"
+    - "Power BI Desktop"
 
 data:
   sources:
-    - name: "[Source name]"
-      type: "[csv / api / database / web-scrape / manual / public-dataset]"
-      access: "[public / private / simulated / anonymized]"
-  row_count_approx: "[e.g., 50000]"
+    - name: "Automotive Production Dealership Records"
+      type: "csv"
+      access: "public"
+  row_count_approx: "1200"
   date_range:
-    start: "YYYY-MM-DD"
-    end: "YYYY-MM-DD"
+    start: "2006-01-01"
+    end: "2022-12-31"
 
 outputs:
-  - type: "[notebook / dashboard / report / csv / script / slides]"
-    path: "[relative/path/to/output]"
-    description: "[One-line description]"
+  - type: "dashboard"
+    path: "Automotive_Sales_Performance_Intelligence_Dashboard.pbix"
+    description: "Interactive operational dashboard breaking down pricing premiums, odometer metrics, and configuration volume constraints."
 
 dependencies:
-  file: "[requirements.txt / environment.yml / packages.R / none]"
-  notes: "[Any setup instructions or environment caveats]"
+  file: "none"
+  notes: "Requires Microsoft Power BI Desktop to open and execute local template visual refreshes."
 
 tags:
-  - "[keyword-1]"
-  - "[keyword-2]"
-  - "[keyword-3]"
+  - "power-bi"
+  - "etl-pipeline"
+  - "automotive-sales"
+  - "data-modeling"
+  - "dashboard-design"
+
