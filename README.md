@@ -172,6 +172,7 @@ Grouping the dataset shows that large-engine passenger vehicles (like the Toyota
 **Insight 4: Real-Time Filters Uncover Hidden Stock Shortages**
 Using the interactive checkbox slicers directly reveals that premium fuel types (like Diesel) combined with automatic gearboxes have the lowest total inventory counts in stock. This shows that supply is not keeping up with demand, flagging an immediate stock shortage that dealership managers can fix by reallocating inventory to high-demand regions.
 
+
 ---
 
 ## 9. Recommendations
