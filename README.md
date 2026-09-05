@@ -70,7 +70,7 @@ Out of Scope:Dealership marketing expenditures, monthly inventory holding costs,
 ---
 
 ## 4. Repository Structure
-
+<!--
 ### 📂 Project Directory Structure
 
 [project-root]/
