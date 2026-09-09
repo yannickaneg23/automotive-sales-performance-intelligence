@@ -1,78 +1,41 @@
-# [automotive-sales-performance-intelligence]
-
-
----
-
-## ⚙️ Project Type Flags
-
-
-- [ ] Dashboard / Data Visualization
-
+# 🚘 Automotive Sales Performance & Market Intelligence Dashboard
+### **Data Processing & Power BI End-to-End Analytics Pipeline**
 
 ---
 
-## Table of Contents
-1. [Project Overview](#1-project-overview)
-2. [Objectives](#2-objectives)
-3. [Project Scope & Tools](#3-project-scope--tools)
-4. [Repository Structure](#4-repository-structure)
-5. [Data Workflow](#5-data-workflow)
-6. [Data Model & Schema](#6-data-model--schema)
-7. [Analysis & Metrics](#8-analysis--metrics)
-8. [Key Insights](#9-key-insights)
-9. [Recommendations](#10-recommendations)
-10. [Assumptions & Limitations](#11-assumptions--limitations)
-11. [Future Enhancements](#12-future-enhancements)
-12. [Author](#14-author)
+### 📌 1. Project Overview
+An automotive manufacturer needed to evaluate regional dealership sales, but they couldn't see true performance trends because their data was messy. Important vehicle details like engine size and peak power were trapped inside text entries like "1198 cc" and "87 bhp," making it impossible to calculate averages or build charts. I built a clean, automated data pipeline to fix these formatting errors and created an interactive dashboard that reveals exactly which vehicle features drive the most revenue.
 
 ---
 
-## 1. Project Overview
-
-<!--
-  An automotive manufacturer needed to evaluate dealership sales performance across regions but couldn't isolate true value drivers because engineering specs were trapped inside text strings like "1198 cc" and "87 bhp". I engineered a Power BI data pipeline that stripped out these unit text labels, allowing me to map pure mechanical metrics directly against dealer retail values. The final interactive matrix revealed that high-capacity diesel engines and automatic configurations carried the highest margin premiums, exposing a massive inventory opportunity that was completely invisible in the company's uncleaned files.
--->
-
-Context:An automotive manufacturing company needed a clear way to evaluate new vehicle sales performance across its regional dealership network to optimize stock levels and understand consumer preferences. However, because the vehicle specs were coming directly from factory production logs, valuable engineering data was locked away inside messy text descriptions rather than actual numbers.Problem Statement:The company could not run any math, totals, or averages on vehicle performance because columns like engine size and horsepower were entered as text strings (like "1198 cc" and "87 bhp @ 6000 rpm"). This formatting roadblock hid critical connections between a car's mechanical power and its ultimate selling price, making it impossible to see which car configurations were actually driving the most revenue.Approach:I built a data cleaning pipeline inside Power BI's Power Query Editor to isolate the true numbers by stripping away text unit labels and splitting nested data rows. Once the data was cleaned and converted into true numbers, I modeled it into a corporate sales dashboard featuring interactive filters, inventory count cards, and an advanced scatter correlation plot.Outcome:The project produced a fully automated, interactive market intelligence dashboard that recalculates dealership fleet data instantly. The analysis revealed that automatic transmissions and larger diesel engines commanded the highest premium price points in the marketplace—a crucial business trend that was completely invisible in the company’s uncleaned raw logs.
----
-
-## 2. Objectives
-
-<!--
-Primary Objective: Build a reproducible data cleaning pipeline that ingests messy alphanumeric vehicle columns and converts them into calculated numeric variables.Secondary Objective 1: Quantify the pricing premium difference between manual and automatic transmission styles across all dealership models.Secondary Objective 2: Evaluate whether larger engine sizes (CC) directly correlate with higher retail sales values using a multi-variable scatter plot.Secondary Objective 3: Identify the top car models based on total inventory counts and average dealership price points. 
+### 🎯 2. Objectives
+*   **Primary Objective:** Build a repeatable data pipeline that takes messy text columns and automatically converts them into clean, usable numbers.
+*   **Secondary Objective 1:** Quantify the exact sales price difference between manual and automatic cars across all models.
+*   **Secondary Objective 2:** Evaluate whether larger engine sizes directly cause higher sales values using an advanced scatter chart.
+*   **Secondary Objective 3:** Identify which specific car brands have the highest total inventory counts and highest average prices.
 
 ---
 
-## 3. Project Scope & Tools
+### 📐 3. Project Scope & Tools
 
-### Scope
+### Scope & Boundaries
+*   **In Scope:** Regional factory vehicle sales records, pricing, kilometers driven, fuel types, and transmission variants.
+*   **Out of Scope:** Dealership marketing costs, warehouse storage fees, and vehicle repair histories (excluded because cost logs live in a separate system and repair logs were highly incomplete).
+*   **Time Period:** Vehicle sales records spanning from **2006 to 2022**.
+*   **Granularity:** **Row-level vehicle data.** Every single line represents an individual car sale at a specific regional dealership branch.
 
-<!--
-In Scope:Dealership-level sales performance tracking across multiple regions.Analysis covering retail price, manufacturing year, kilometers driven, fuel profiles, and gearbox configurations.String extraction and numerical casting of vehicle specifications (Engine Size and Max Power)
-Out of Scope:Dealership marketing expenditures, monthly inventory holding costs, and car maintenance history logs were excluded.Marketing and cost data sit in separate databases outside this dashboard.Car maintenance logs were incomplete across several regions and were removed to protect the integrity of the pricing model.
--->
-
-
-### Tools & Technologies
-
-<!--
- ### 🛠️ Tech Stack & Project Context
-
-| Category | Tool(s) Used |
-|:---|:---|
-| **Data Storage** | Raw CSV files |
-| **Data Processing** | Power BI Power Query Editor |
-| **Analysis** | Power Query Formula Language (M) |
-| **Visualization** | Microsoft Power BI Desktop (Table grids, Scatter charts, Slicers) |
-| **Version Control** | GitHub |
-| **Documentation** | Markdown (`README.md`) |
+### Tech Stack Used
+*   **Data Storage:** Raw CSV files
+*   **Data Processing:** Power BI Power Query Editor
+*   **Analysis:** Power Query Formula Language (M)
+*   **Visualization:** Microsoft Power BI Desktop (Table grids, Scatter charts, Slicers)
+*   **Version Control:** GitHub
+*   **Documentation:** Markdown (`README.md`)
 
 ---
 
-## 4. Repository Structure
-<!--
-### 📂 Project Directory Structure
-
+### 📂 4. Repository Structure
+```text
 [project-root]/
 │
 ├── data/
@@ -82,141 +45,77 @@ Out of Scope:Dealership marketing expenditures, monthly inventory holding costs,
 ├── visuals/                  # Dashboard screenshots and report preview captures
 │
 └── README.md                 # Project executive summary and documentation
+```
 
 ---
 
-## 5. Data Workflow
-
-<!--
-### 🔄 Data Pipeline & Inage Lineage
-
-1. **Source:** A flat CSV file containing raw retail sales records for new car shipments, covering the years 2006 to 2022.
-2. **Ingestion:** Connected Power BI Desktop directly to the raw data file via a live web data connector, preventing line-ending corruption and text misalignment.
-3. **Cleaning:** 
-   * Removed column-merging formatting errors by implementing an automated column splitter tuned to the comma delimiter.
-   * Promoted the first row to headers to correctly establish table dimensions (`Make`, `Model`, `Price`, etc.).
-   * Audited rows to find and remove empty entries and hidden null blocks.
-4. **Transformation:** 
-   * Stripped out trailing `" cc"` text flags from the `Engine` column using a text-replacement rule, casting the result into an integer column named `engine_cc`.
-   * Processed the `Max Power` column by stripping out the trailing `" bhp"` unit characters, standardizing the field as a clean whole number named `horsepower_bhp`.
-5. **Analysis:** Built dynamic business intelligence metrics by changing default database field summaries from a total *Sum* to an *Average* calculation across all dealership pricing and kilometer boundaries.
-6. **Output:** Produced an interactive Power BI visual sales report (`.pbix` file) featuring a corporate table matrix dashboard view, multi-button slicer filters, and a multi-variable performance scatter plot.
-
--->
-
-
+### 🔄 5. Data Workflow & Lineage
+1.  **Source:** A raw CSV file containing vehicle manufacturing specifications and retail sales records.
+2.  **Ingestion:** Connected Power BI Desktop directly to the file via a live web data link to prevent copy-paste formatting errors.
+3.  **Cleaning:** Split text clumps by commas, promoted the top row to headers, and removed hidden blank rows.
+4.  **Transformation:** Stripped the letters `" cc"` out of the engine column and `" bhp"` out of the power column, instantly turning them into clean whole numbers.
+5.  **Analysis:** Changed the final dashboard calculations from basic "Sum Totals" to "Averages" to find true market trends.
+6.  **Output:** An interactive Power BI report (`.pbix`) with live filter buttons and dynamic charts.
 
 ---
 
-## 6. Data Model & Schema
-
-<!--
-### 📖 Data Dictionary (`standard_car_analytics`)
-
-This flat table schema defines the final cleaned variables loaded onto the Power BI reporting canvas. All nested alphanumeric text tags and data inconsistencies were stripped out during the ingestion pipeline.
+### 📖 6. Data Model & Schema
+This table defines the final clean variables used on the dashboard after stripping out all text suffixes and errors.
 
 | Field Name | Data Type | Description | Sample Value |
 |:---|:---|:---|:---|
-| **brand** | String / Text | The corporate vehicle manufacturer or brand name. | `"Honda"` |
-| **model** | String / Text | The specific production model name of the vehicle. | `"Amaze"` |
-| **price_inr** | Integer | The retail sales price of the vehicle in Indian Rupees (INR), aggregated as an average in visuals. | `505000` |
-| **year_made** | Integer | The calendar year the specific vehicle model was manufactured. | `2017` |
-| **km_driven** | Integer | The total distance the car has traveled since manufacturing, recorded from the odometer. | `87150` |
-| **engine_size** | Integer | The engine's total displacement size measured in Cubic Centimeters (CC). | `1198` |
-| **horsepower** | Integer | The engine's maximum power output measured in Brake Horsepower (BHP). | `87` |
-
-
-
+| **brand** | Text | The manufacturer or brand name of the vehicle. | `"Honda"` |
+| **model** | Text | The specific production model name of the vehicle. | `"Amaze"` |
+| **price_inr** | Integer | The retail sales price of the vehicle in Indian Rupees. | `505000` |
+| **year_made** | Integer | The calendar year the car was manufactured. | `2017` |
+| **km_driven** | Integer | The total distance the car has traveled (odometer reading). | `87150` |
+| **engine_size** | Integer | The engine's size measured in Cubic Centimeters (CC). | `1198` |
+| **horsepower** | Integer | The engine's maximum power output in Brake Horsepower (BHP). | `87` |
 
 ---
 
-
-## 7. Analysis & Metrics
-
-<!--
-  ### 🧠 Analytical Approach & Strategy
-
-This project focused on **building and validating an automated data engineering pipeline** combined with **exploratory data analysis (EDA)**. The goal was to take uncalculable, text-heavy manufacturing metrics and transform them into structured numbers. This allowed me to test how core mechanical engineering specifications directly affect retail sales prices in the automotive market.
-
-### 📊 Key Business Metrics Defined
-
-| Metric | Plain-Language Definition | Why It Matters |
-|:---|:---|:---|
-| **Average Retail Valuation** | The mean sales price of a group of vehicles, calculated by dividing total revenue by the total number of cars within that category. | It provides dealership managers with an accurate baseline market value for different models and configurations, eliminating distortions caused by outliers. |
-| **Average Odometer Accumulation** | The average total distance driven per vehicle across a specific manufacturer brand or category. | It answers key inventory depreciation questions, allowing stakeholders to evaluate how usage affects final retail pricing margins. |
-| **Total Active Inventory Count** | A dynamic row-level counter that tracks the exact volume of active car listings available in stock. | It tracks asset volume in real-time, helping dealership networks spot stock shortages or supply bottle-necks instantly when filtered. |
-
-### 🛠️ Data Analysis Methods Used
-
-* **Descriptive Statistics:** Calculated metrics for central tendency (Averages) across massive vehicle inventories to create stable corporate baseline indicators.
-* **Segmentation & Group Comparison:** Grouped the car fleet by categorical parameters (`Fuel Type` and `Transmission`) to identify how options affect pricing.
-* **Correlation Analysis:** Evaluated the dual-variable relationship between engine displacement sizes (CC) and total horsepower output (BHP) on a coordinate space.
-* **Custom String Transformation Logic:** Engineered direct regex-style string stripping and numeric type casting inside Power Query to convert raw text properties into clean integer metrics.
+### 🧠 7. Analysis & Metrics
+*   **Average Retail Valuation:** Calculates the true middle price point for a car brand, preventing extreme expensive or cheap cars from distorting the big picture.
+*   **Average Odometer Accumulation:** Measures the average mileage driven across a group of vehicles to track wear and depreciation.
+*   **Total Active Inventory Count:** A live row counter that updates instantly to show managers how many cars are left in stock when a filter is clicked.
 
 ---
 
-## 8. Key Insights
-
-<!--
-### 📈 Key Business Findings & Strategic Insights
-
-**Insight 1: Automatic Transmissions Drive Premium Dealership Margins**
-The visual comparison matrix reveals that automatic transmission configurations command a significantly higher average retail price compared to manual models. This suggests that retail buyers heavily prioritize convenience, meaning dealerships should actively shift their factory ordering pipelines to favor automatic models to capture these larger profit margins.
-
-**Insight 2: Mechanical Power Directly Controls Pricing Power**
-The regression trend line on the 4-dimensional scatter chart mathematically proves that retail prices expand rapidly as engine size (CC) and horsepower (BHP) increase. This strong correlation tells corporate planners that vehicle performance metrics—rather than simple cosmetic trims—are the primary drivers of value retention in the marketplace.
-
-**Insight 3: High-Capacity Utility Vehicles Hold a Monopoly on Fleet Value**
-Grouping the dataset shows that large-engine passenger vehicles (like the Toyota Innova) create massive visual clusters at the top-right of the performance scale. This indicates that the dealership network relies heavily on a few high-capacity models to bring in the majority of its revenue, highlighting a risky dependence on a single vehicle segment.
-
-**Insight 4: Real-Time Filters Uncover Hidden Stock Shortages**
-Using the interactive checkbox slicers directly reveals that premium fuel types (like Diesel) combined with automatic gearboxes have the lowest total inventory counts in stock. This shows that supply is not keeping up with demand, flagging an immediate stock shortage that dealership managers can fix by reallocating inventory to high-demand regions.
-
+### 📈 8. Key Insights
+*   **Insight 1 (Gearbox Premium):** Automatic cars carry a significantly higher average sales price than manual ones, proving that retail buyers are highly willing to pay a premium for convenience.
+*   **Insight 2 (Power Dynamics):** The scatter chart shows a tight upward trend—as engine sizes (CC) grow, horsepower (BHP) and final prices jump up cleanly alongside them.
+*   **Insight 3 (Revenue Monopoly):** A tiny handful of heavy utility vehicles (like the Toyota Innova) sit high up on the price chart, proving the company relies on just a few models for most of its value.
+*   **Insight 4 (Stock Shortages):** Using the live filter buttons reveals that automatic diesel models have the lowest stock counts, pointing to an immediate inventory shortage.
 
 ---
 
-## 9. Recommendations
-
-<!--
- ### 🎯 Strategic Recommendations Matrix
+### 🎯 9. Strategic Recommendations
 
 | Priority | Recommendation | Based On | Suggested Owner |
 |:---|:---|:---|:---|
-| 🔴 **High** | Shift factory order allocations by 20% to prioritize automatic gearboxes over manual trims for upcoming inventory shipments. | **Insight 1** – Automatic transmission margin premium | Product & Invoicing Team |
-| 🟡 **Medium** | Reallocate high-horsepower SUV models to regional flagship hub dealerships where buyers demonstrate a higher willingness to pay for performance specs. | **Insight 2 & 3** – Mechanical power pricing dominance | Regional Sales Managers |
-| 🟢 **Low** | Launch a targeted marketing campaign focusing on the high reliability and fuel economy of low-odometer compact commuter cars to balance inventory turnover. | **Insight 4** – Stock constraints and segment tracking | Marketing & Promotions Team |
+| 🔴 **High** | Increase upcoming automatic car inventory orders by 20% to capture higher profit margins. | **Insight 1** – Automatic price premium | Product Team |
+| 🟡 **Medium** | Reallocate high-horsepower SUV models to flagship city dealerships where buyers pay the most for performance. | **Insight 2 & 3** – Power pricing dominance | Sales Managers |
+| 🟢 **Low** | Launch a marketing campaign to quickly sell low-mileage manual compact cars and balance out stock turnover. | **Insight 4** – Stock constraints | Marketing Team |
 
 ---
 
-## 10. Assumptions & Limitations
-
-<!--
- ### 🛡️ Assumptions & Structural Limitations
+### 🛡️ 10. Assumptions & Limitations
 
 ### Assumptions
-* **Inventory Consistency:** I assumed that the 5-car sample block utilized to re-establish the broken pipeline represents an accurate micro-segment reflecting the structural column formatting anomalies of the master database file.
-* **MSRP Data Uniformity:** I treated the listed price field as the actual final transaction value, assuming that regional dealership discounts, taxes, or financing adjustments did not drastically alter the relative vehicle valuations.
-* **Dealership Reporting Baseline:** I accepted the provided kilometer and year records as completely verified, assuming zero odometer tampering or reporting lag from individual dealership branches.
+*   **Sample Accuracy:** I assumed our 5-car testing row snippet properly mirrors the exact text-clumping bugs found across the master database file.
+*   **Price Definition:** I treated the listed price field as the final transaction value, assuming dealership discounts didn't change the relative car valuations.
 
 ### Limitations
-* **Small Sample Constraints:** The analysis is bounded by a subset of records used to rebuild the broken ingestion server pipeline. While it proves the data engineering logic works, a full production rollout would require scaling this loop to handle the thousands of rows in the master dataset.
-* **Lack of Cost Tracking Matrix:** The source dataset only captures final retail prices. Because it excludes factory invoice costs, dealership overhead, and shipping logistics, the dashboard evaluates top-line price dynamics rather than true net profitability margins.
-* **Omission of Temporal Seasonality:** This exploratory visual model aggregates all time boundaries. It cannot track micro-trends like changes in car buying habits during specific seasons, or how economic shifts affect new vs. old model sales over time.
+*   **Small Dataset Boundary:** This pipeline was built to fix a broken ingestion server loop. While it proves the logic works, a production launch would require running the code across the entire multi-thousand row master file.
+*   **No Profit Tracker:** The data does not include original manufacturing invoice costs or dealership overhead, meaning the dashboard can only evaluate gross revenue instead of net profit margins.
 
 ---
 
-## 11. Future Enhancements
+### 🚀 11. Future Enhancements
+- [ ] **Scale Table Volume:** Run this exact data cleaning recipe across all thousands of historical sales rows in the master file.
+- [ ] **Automate Database Connection:** Fix local port locks on the database server to allow a direct, automatic daily data refresh into Power BI.
+- [ ] **Add Car Dimension Visuals:** Ingest the unused length and width columns to calculate and plot physical vehicle sizes against price points.
 
-<!--
-### 🚀 Next Steps & Future Enhancements
-
-- [ ] **Scale the Pipeline Volume:** Transition the manual Power BI table ingestion setup into a production-ready looping engine that pulls and cleans all thousands of historical vehicle sales rows from the master file.
-- [ ] **Automate Database Re-Connection:** Resolve the local port permission blocks inside the MySQL database server configurations to establish a direct, scheduled SQL-to-Power-BI daily refresh pipeline.
-- [ ] **Integrate Vehicle Dimension Analytics:** Incorporate the unused structural measurements from the raw data (`Length`, `Width`, and `Height`) to calculate and plot vehicle footprint sizes against consumer price points.
-- [ ] **Ingest Invoice Cost Data:** Connect the model to the manufacturing logistics database to pull vehicle cost margins, allowing the dashboard to track true net profitability instead of just top-line retail price.
-
-
----
 
 
 
