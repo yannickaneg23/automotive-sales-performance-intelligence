@@ -127,7 +127,7 @@ This table defines the final clean variables used on the dashboard after strippi
 [DATA ANALYST]
 
 - 🔗 [[LinkedIn URL](https://www.linkedin.com/in/aneg-yannick-19692a432/)]
-- 💼 [Portfolio or GitHub profile URL]
+- 💼 [[Portfolio or GitHub profile URL](https://github.com/yannickaneg23)]
 - 📧 [yannickaneg23@gmail.com]
 
 ---
